@@ -534,10 +534,11 @@ def make_chart(
 ) -> go.Figure:
     fig = go.Figure()
 
-    fig.add_trace(go.Scatter(
+    fig.add_trace(go.Bar(
         x=demand_kva.index, y=demand_kva.values,
-        mode="lines", name="Demand (kVA)",
-        line=dict(color="#374345", width=0.6),
+        name="Demand (kVA)",
+        marker_color="#374345",
+        width=1_800_000,  # 30 min in milliseconds — fills each HH slot
     ))
 
     x_ends = [demand_kva.index.min(), demand_kva.index.max()]
@@ -617,30 +618,17 @@ _3TI_SVG = """<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/200
 </svg>"""
 
 st.set_page_config(page_title="HH Data Analysis", layout="wide")
-st.markdown(
-    f"""
-    <style>
-        .block-container {{ padding-top: 1rem; }}
-    </style>
-    <div style="
-        background:#222926;
-        padding:12px 24px;
-        border-radius:8px;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        margin-bottom:1.5rem;
-    ">
-        <div style="color:#fff;font-family:Arial,sans-serif;font-size:1.2rem;font-weight:600;letter-spacing:0.02em;">
-            HH Data Analysis&nbsp;<span style="color:#fdb913;">|</span>&nbsp;Half Hourly Demand Profiler
-        </div>
-        <div style="height:44px;width:auto;display:flex;align-items:center;">
-            {_3TI_SVG}
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True,
+
+_header_html = (
+    '<div style="background:#222926;padding:12px 24px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">'
+    '<div style="color:#fff;font-family:Arial,sans-serif;font-size:1.2rem;font-weight:600;letter-spacing:0.02em;">'
+    'HH Data Analysis&nbsp;<span style="color:#fdb913;">|</span>&nbsp;Half Hourly Demand Profiler'
+    '</div>'
+    '<div style="height:44px;display:flex;align-items:center;">'
+    + _3TI_SVG +
+    '</div></div>'
 )
+st.markdown(_header_html, unsafe_allow_html=True)
 
 st.write(
     "Upload Half Hourly electricity demand data, enter the Agreed Supply Capacity "
