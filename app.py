@@ -606,7 +606,7 @@ def make_chart(
 #  Streamlit UI
 # ══════════════════════════════════════════════════════════════════════════════
 
-_3TI_SVG = """<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 199.67 131.05">
+_3TI_SVG = """<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 199.67 131.05" height="44" width="auto">
   <defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f9a800;}</style></defs>
   <g id="Layer_1-2" data-name="Layer 1"><g>
     <path class="cls-1" d="M48.58,128.78c-24.59,0-39.57-10.53-45.72-32.16l24.92-3.08c3.14,12.57,11.63,15.29,18.38,15.29,4.68,0,8.57-1.27,11.58-3.76,3.13-2.6,4.72-6.12,4.72-10.47,0-2.93-.87-5.56-2.58-7.81-1.63-2.14-3.44-3.68-5.37-4.59-1.93-.9-4.96-1.33-9.26-1.33h-11.51v-19.12h9.35c6.99,0,11.48-1.37,13.73-4.17,2.09-2.62,3.16-5.41,3.16-8.31,0-3.65-1.37-6.73-4.07-9.16-2.63-2.37-6.08-3.57-10.24-3.57-5.78,0-13.05,2.26-15.92,12.65l-22.85-3.6c2.56-8.89,7.36-15.91,14.31-20.88,7.62-5.45,16.8-8.21,27.28-8.21,11.83,0,21.42,2.77,28.5,8.25,7,5.41,10.41,12.42,10.41,21.45,0,5.29-1.46,9.95-4.33,13.85-2.91,3.95-6.51,6.53-11,7.89l-7.15,2.17,7.14,2.18c12.66,3.86,18.82,11.87,18.82,24.48,0,10.17-3.75,17.84-11.48,23.45-7.84,5.69-18.22,8.58-30.84,8.58Z"/>
@@ -620,33 +620,23 @@ st.set_page_config(page_title="HH Data Analysis", layout="wide")
 st.markdown(
     f"""
     <style>
-        .block-container {{ padding-top: 0 !important; }}
-        h1 {{ font-size: 1.6rem !important; }}
-        .hhd-header {{
-            background-color: #222926;
-            padding: 14px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-            margin-left: -3rem;
-            margin-right: -3rem;
-        }}
-        .hhd-header-title {{
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-        }}
-        .hhd-header-title span {{
-            color: #fdb913;
-        }}
-        .hhd-logo {{ height: 48px; width: auto; }}
+        .block-container {{ padding-top: 1rem; }}
     </style>
-    <div class="hhd-header">
-        <div class="hhd-header-title">HH Data Analysis <span>|</span> Half Hourly Demand Profiler</div>
-        <div class="hhd-logo">{_3TI_SVG}</div>
+    <div style="
+        background:#222926;
+        padding:12px 24px;
+        border-radius:8px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-bottom:1.5rem;
+    ">
+        <div style="color:#fff;font-family:Arial,sans-serif;font-size:1.2rem;font-weight:600;letter-spacing:0.02em;">
+            HH Data Analysis&nbsp;<span style="color:#fdb913;">|</span>&nbsp;Half Hourly Demand Profiler
+        </div>
+        <div style="height:44px;width:auto;display:flex;align-items:center;">
+            {_3TI_SVG}
+        </div>
     </div>
     """,
     unsafe_allow_html=True,
